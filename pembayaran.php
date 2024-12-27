@@ -62,6 +62,17 @@
         .btn:hover {
             background-color: #0056b3;
         }
+        .notification {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -76,7 +87,25 @@
             <label for="proof">Unggah Bukti Pembayaran</label>
             <input type="file" id="proof" name="proof" accept="image/*">
         </div>
-        <button class="btn">Kirim</button>
+        <button class="btn" onclick="submitPayment()">Kirim</button>
+        <div class="notification" id="notification">
+            Bukti pembayaran berhasil dikirim! Terima kasih.
+        </div>
     </div>
+
+    <script>
+        function submitPayment() {
+            const fileInput = document.getElementById('proof');
+            if (fileInput.files.length > 0) {
+                const notification = document.getElementById('notification');
+                notification.style.display = 'block';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 3000); 
+            } else {
+                alert('Harap unggah bukti pembayaran terlebih dahulu.');
+            }
+        }
+    </script>
 </body>
 </html>
